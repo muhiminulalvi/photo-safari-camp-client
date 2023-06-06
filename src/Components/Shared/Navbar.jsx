@@ -4,22 +4,22 @@ const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/" className="font-bold text-[20px] text-secondary">
+        <Link to="/" className="font-bold text-[20px] ">
           Home
         </Link>
       </li>
       <li>
-        <Link to="/instructors" className="font-bold text-[20px] text-secondary">
+        <Link to="/instructors" className="font-bold text-[20px] ">
           Instructors
         </Link>
       </li>
       <li>
-        <Link to="/classes" className="font-bold text-[20px] text-secondary">
+        <Link to="/classes" className="font-bold text-[20px] ">
           Classes
         </Link>
       </li>
       <li>
-        <Link to="/dashboard" className="font-bold text-[20px] text-secondary">
+        <Link to="/dashboard" className="font-bold text-[20px] ">
           Dashboard
         </Link>
       </li>
@@ -53,13 +53,13 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <Link to='/' className="font-bold text-xl uppercase text-secondary tracking-wide">Photo Safari Camp</Link>
+          <Link to='/' className="font-bold text-xl uppercase  tracking-wide">Photo Safari Camp</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-secondary text-primary font-bold">Login</a>
+          <a className="btn btn-error font-bold">Login</a>
         </div>
       </div>
     </div>
