@@ -1,10 +1,10 @@
 const About = () => {
     return (
-      <section className="bg-yellow-50 py-12">
-        <div className="max-w-[1920px] mx-auto xl:px-20 md:px-10 px-4">
+      <section className="bg-yellow-50 py-20">
+        <div className="max-w-[1920px] mx-auto xl:px-28 md:px-10 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-between">
             <div className="">
-            <h2 className="text-5xl font-bold  mb-6">OUR STORY</h2>
+            <h2 className="text-5xl font-bold text-error mb-6">OUR STORY</h2>
               <p className="text-lg font-semibold mb-4 text-justify">
                 At our photography school, we are passionate about capturing moments and expressing creativity through the lens. We believe in the power of photography to tell stories, evoke emotions, and preserve memories.
               </p>
@@ -18,7 +18,7 @@ const About = () => {
               </p>
             </div>
             <div className="">
-              <img src="https://i.ibb.co/DW4cqym/pexels-cmonphotography-3329812.jpg" alt="About Image" className="rounded-lg shadow-lg" />
+              <img src="https://img.freepik.com/free-photo/woman-man-looking-camera-photos_23-2148532473.jpg" alt="About Image" className="rounded-lg shadow-lg" />
             </div>
           </div>
         </div>

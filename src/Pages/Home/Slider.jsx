@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Slider = () => {
   return (
-    <div className="">
+    <>
       <Carousel
         showStatus={false}
         showIndicators={false}
@@ -65,7 +65,7 @@ const Slider = () => {
         </div>
         {/* Add more slides as needed */}
       </Carousel>
-    </div>
+    </>
   );
 };
 
