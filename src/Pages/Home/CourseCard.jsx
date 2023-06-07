@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   const {
-    _id,
+    // _id,
     name,
     category,
     instructor,
     image,
     // availableSeats,
     price,
-    studentsEnrolled,
+    // studentsEnrolled,
   } = course || {};
   return (
-    <div className="card w-full h-full bg-base-100 shadow-xl">
+    <div className="card w-full h-full bg-yellow-50 shadow-xl">
       <figure>
         <img
           src={image}

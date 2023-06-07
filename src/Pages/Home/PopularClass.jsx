@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CourseCard from "./CourseCard";
+import SectionTitle from "../../Components/Shared/SectionTitle";
 
 
 
@@ -18,8 +19,9 @@ const PopularClass = () => {
   }, []);
 
   return (
-    <div className="max-w-[1920px] mx-auto xl:px-28 md:px-10 sm:px-2 overflow-x-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-between gap-6 pt-3 pb-16">
+    <div className="max-w-[1920px] mx-auto xl:px-28 md:px-10 sm:px-2">
+      <SectionTitle heading="Popular Classes" subHeading="Browse Your Favourite Course"/>
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-between gap-6 pt-3 pb-20 px-4">
         {
             popularClass.map(course => <CourseCard key={course._id} course={course}></CourseCard>)
         }
