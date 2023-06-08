@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { FaUserShield } from "react-icons/fa";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext)
+  
   const navOptions = (
     <>
       <li>
@@ -25,8 +30,16 @@ const Navbar = () => {
       </li>
     </>
   );
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div className="bg-primary border-b-2 border-primary shadow-md">
+    <div className="bg-primary border-b-2 border-primary shadow-md py-4">
       <div className="navbar max-w-[1920px] mx-auto xl:px-20 md:px-10 sm:px-2">
         <div className="navbar-start">
           <div className="dropdown z-10">
@@ -59,7 +72,41 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <Link to='/login' className="btn btn-error font-bold">Login</Link>
+          {
+            user ? 
+            (<div className="flex flex-row items-center gap-5">
+            <label
+              className="tooltip"
+              data-tip={`${user.displayName ? user.displayName : ""}`}
+            >
+              <div className="w-10 ">
+                {user.photoURL ? (
+                  <img
+                    src={`${user?.photoURL}`}
+                    alt=""
+                    className="rounded-full w-10"
+                  />
+                ) : (
+                  <FaUserShield size={30} color="#ff3811" />
+                )}
+              </div>
+            </label>
+            <button
+              className="btn btn-error text-white font-bold"
+              onClick={handleLogOut}
+            >
+              Log Out
+            </button>
+          </div>) 
+            : 
+            (<Link
+              to="/login"
+              className="btn btn-error text-white rounded-md font-bold"
+            >
+              Login
+            </Link>)
+          }
+          
         </div>
       </div>
     </div>

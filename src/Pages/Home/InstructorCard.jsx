@@ -1,7 +1,6 @@
 
 
 const InstructorCard = ({instructor}) => {
-    console.log(instructor);
     const {
         // _id,
         name,
