@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
@@ -15,8 +15,9 @@ const Register = () => {
 
   const password = watch("password");
   const confirm_password = watch("confirm_password");
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
@@ -24,7 +25,7 @@ const Register = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         updateUserProfile(data.name, data.photoURL)
-          .then(() => navigate("/"))
+          .then(() => navigate(from, {replace: true}))
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));

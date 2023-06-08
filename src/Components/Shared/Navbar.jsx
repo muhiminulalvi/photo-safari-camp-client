@@ -2,10 +2,14 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaUserShield } from "react-icons/fa";
+import { HiShoppingCart } from "react-icons/hi";
+import useCart from "../../hooks/useCart";
+
 
 const Navbar = () => {
-  const {user, logOut} = useContext(AuthContext)
-  
+  const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart()
+
   const navOptions = (
     <>
       <li>
@@ -28,6 +32,14 @@ const Navbar = () => {
           Dashboard
         </Link>
       </li>
+      {user && (
+        <li>
+          <Link className="">
+              <HiShoppingCart size={20} color="#000000"></HiShoppingCart>
+              <span className="badge badge-error">+{cart?.length || 0}</span>
+          </Link>
+        </li>
+      )}
     </>
   );
   const handleLogOut = () => {
@@ -66,47 +78,47 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <Link to='/' className="font-bold text-xl uppercase  tracking-wide">Photo Safari Camp</Link>
+          <Link to="/" className="font-bold text-xl uppercase  tracking-wide">
+            Photo Safari Camp
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          {
-            user ? 
-            (<div className="flex flex-row items-center gap-5">
-            <label
-              className="tooltip"
-              data-tip={`${user.displayName ? user.displayName : ""}`}
-            >
-              <div className="w-10 ">
-                {user.photoURL ? (
-                  <img
-                    src={`${user?.photoURL}`}
-                    alt=""
-                    className="rounded-full w-10"
-                  />
-                ) : (
-                  <FaUserShield size={30} color="#ff3811" />
-                )}
-              </div>
-            </label>
-            <button
-              className="btn btn-error text-white font-bold"
-              onClick={handleLogOut}
-            >
-              Log Out
-            </button>
-          </div>) 
-            : 
-            (<Link
+          {user ? (
+            <div className="flex flex-row items-center gap-5">
+              <label
+                className="tooltip"
+                data-tip={`${user.displayName ? user.displayName : ""}`}
+              >
+                <div className="w-10 ">
+                  {user.photoURL ? (
+                    <img
+                      src={`${user?.photoURL}`}
+                      alt=""
+                      className="rounded-full w-10"
+                    />
+                  ) : (
+                    <FaUserShield size={30} color="#ff3811" />
+                  )}
+                </div>
+              </label>
+              <button
+                className="btn btn-error text-white font-bold"
+                onClick={handleLogOut}
+              >
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <Link
               to="/login"
               className="btn btn-error text-white rounded-md font-bold"
             >
               Login
-            </Link>)
-          }
-          
+            </Link>
+          )}
         </div>
       </div>
     </div>
