@@ -34,7 +34,7 @@ const Navbar = () => {
       </li>
       {user && (
         <li>
-          <Link className="">
+          <Link to="dashboard/mycart">
               <HiShoppingCart size={20} color="#000000"></HiShoppingCart>
               <span className="badge badge-error">+{cart?.length || 0}</span>
           </Link>

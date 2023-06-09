@@ -8,7 +8,7 @@ const CourseCard = ({ course }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation()
-  const [, refetch] = useCart()
+  const [cart , refetch] = useCart()
   const {
     _id,
     name,
@@ -24,6 +24,19 @@ const CourseCard = ({ course }) => {
     console.log(course);
     if (user && user.email) {
       const cartItem = {courseId: _id, name,image, price, email: user.email}
+
+      const alreadyCourseInCart = cart.find(item => item.courseId === course._id);
+
+      if(alreadyCourseInCart){
+        Swal.fire({
+          position: "center",
+          icon: "info",
+          title: "Course already added to the cart",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        return;
+      }
       fetch("http://localhost:5000/carts", {
         method: 'POST',
         headers: {
@@ -62,7 +75,7 @@ const CourseCard = ({ course }) => {
     }
   };
   return (
-    <div className="card w-full h-full bg-yellow-50 shadow-xl">
+    <div className="card w-full h-full bg-yellow-50 shadow-xl ">
       <figure>
         <img src={image} alt="Shoes" className="w-full h-80" />
       </figure>
