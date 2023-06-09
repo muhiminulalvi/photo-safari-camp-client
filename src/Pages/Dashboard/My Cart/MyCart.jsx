@@ -1,11 +1,41 @@
 import { Link } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
+import Swal from 'sweetalert2'
 
 const MyCart = () => {
-  const [cart] = useCart();
-  const total = cart.reduce((sum, item) => item.price + sum, 0);
+  const [cart, refetch] = useCart();
+  const total = cart.reduce((sum, item) => item.price + sum, 0).toFixed(2);
+
+  const handleDelete = (item) =>{
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5000/carts/${item._id}`, {
+            method: 'DELETE',
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(data.deletedCount > 0){
+                refetch()
+                Swal.fire(
+                    'Deleted!',
+                    'Item Deleted Successfully.',
+                    'success'
+                  )
+            }
+          })
+        }
+      })
+  }
   return (
-    <div>
+    <div className="w-full xl:px-32">
       <div className="uppercase flex items-center justify-between font-bold gap-6">
         <h3 className="text-xl">Total Items: {cart.length}</h3>
         <h3 className="text-xl">Total Price: ${total}</h3>
@@ -43,9 +73,9 @@ const MyCart = () => {
                   </div>
                 </td>
                 <td className="font-bold">{item.name}</td>
-                <td className="text-end font-bold">${item.price}</td>
+                <td className="text-start font-bold">${item.price}</td>
                 <td>
-                  <button className="btn btn-error">Delete</button>
+                  <button onClick={() => handleDelete(item)} className="btn btn-error">Delete</button>
                 </td>
               </tr>
             ))}
