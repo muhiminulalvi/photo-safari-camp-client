@@ -2,15 +2,16 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
-  const { createUser, updateUserProfile } =
-    useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty },
     watch,
+    reset,
   } = useForm();
 
   const password = watch("password");
@@ -19,13 +20,28 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         updateUserProfile(data.name, data.photoURL)
-          .then(() => navigate(from, {replace: true}))
+          .then(() => {
+            const saveUser = { name: data.name, email: data.email };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  navigate(from, { replace: true });
+                }
+              });
+          })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
@@ -133,7 +149,6 @@ const Register = () => {
                   Password and Confirm Password do not match
                 </span>
               )}
-
             </div>
             <div className="form-control">
               <label className="label">
@@ -153,19 +168,24 @@ const Register = () => {
               )}
             </div>
             <div className="form-control mt-6">
-            <input
+              <input
                 type="submit"
-                className={`btn btn-primary ${!isDirty || confirm_password !== password ? "opacity-80 cursor-not-allowed" : ""}`}
+                className={`btn btn-primary ${
+                  !isDirty || confirm_password !== password
+                    ? "opacity-80 cursor-not-allowed"
+                    : ""
+                }`}
                 value="Register"
                 disabled={!isDirty || confirm_password !== password}
               />
             </div>
-            <div className="text-center">
-              <p>
-                Already have an account? <Link to="/login">Please Login</Link>{" "}
-              </p>
-            </div>
           </form>
+          <div className="text-center card-body">
+            <SocialLogin></SocialLogin>
+            <p>
+              Already have an account? <Link to="/login">Please Login</Link>{" "}
+            </p>
+          </div>
         </div>
       </div>
     </div>

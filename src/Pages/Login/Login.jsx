@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -65,11 +66,11 @@ const Login = () => {
               </label>
               <div className="w-full flex">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Your Password"
                   className="input input-bordered rounded-none border-r-0 bg-white w-11/12"
-                  {...register('password', {
+                  {...register("password", {
                     required: true,
                   })}
                 />
@@ -89,15 +90,21 @@ const Login = () => {
             </div>
 
             <div className="form-control mt-6">
-              <input type="submit" className="btn btn-primary rounded-none" value="Login" />
-            </div>
-            <div className="text-center">
-              <p>
-                New to Photo Safari Camp?{" "}
-                <Link to="/register">Please Register</Link>{" "}
-              </p>
+              <input
+                type="submit"
+                className="btn btn-primary rounded-none"
+                value="Login"
+              />
             </div>
           </form>
+
+          <div className="text-center card-body">
+            <SocialLogin></SocialLogin>
+            <p>
+              New to Photo Safari Camp?{" "}
+              <Link to="/register">Please Register</Link>{" "}
+            </p>
+          </div>
         </div>
       </div>
     </div>

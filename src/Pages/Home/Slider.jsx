@@ -16,7 +16,7 @@ const Slider = () => {
           <img
             src="https://i.ibb.co/kKLggZc/pexels-andy-vu-3244513.jpg"
             alt="Slider 1"
-            className="w-full h-[550px]"
+            className="w-full h-[650px]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="bg-black opacity-50 absolute inset-0"></div>
@@ -33,7 +33,7 @@ const Slider = () => {
           <img
             src="https://i.ibb.co/K9fX4hy/pexels-kelly-2519390.jpg"
             alt="Slider 2"
-            className="w-full h-[550px]"
+            className="w-full h-[650px]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="bg-black opacity-50 absolute inset-0"></div>
@@ -50,7 +50,7 @@ const Slider = () => {
           <img
             src="https://i.ibb.co/swZYjQf/pexels-francesco-ungaro-464327.jpg"
             alt="Slider 3"
-            className="w-full h-[550px]"
+            className="w-full h-[650px]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="bg-black opacity-50 absolute inset-0"></div>
