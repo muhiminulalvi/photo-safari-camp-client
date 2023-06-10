@@ -44,22 +44,13 @@ const CourseCard = ({ course }) => {
               'Authorization': `Bearer ${localStorage.getItem("access-token")}`
             },
       })
-      // fetch("http://localhost:5000/carts", {
-      //   method: 'POST',
-      //   headers: {
-      //     'content-type': 'application/json',
-      //     'Authorization': `Bearer ${localStorage.getItem("access-token")}`
-      //   },
-      //   body: JSON.stringify(cartItem)
-      // })
-      //   .then((res) => res.json())
         .then((data) => {
           if (data?.data.insertedId) {
             refetch()
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Course Added in The Cart Succesfully",
+              title: "Course Added in The Cart Successfully",
               showConfirmButton: false,
               timer: 1500,
             });

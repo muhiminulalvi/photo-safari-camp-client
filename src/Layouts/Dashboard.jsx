@@ -78,7 +78,7 @@ const Dashboard = () => {
             ) : isInstructor ? (
               <>
                 <li>
-                  <NavLink to="instructorpanel">Instructor Panel</NavLink>
+                  <NavLink to="addclass">Add A Class</NavLink>
                 </li>
                 {/* Add more instructor-specific links here */}
               </>
