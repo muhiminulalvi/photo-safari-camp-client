@@ -6,7 +6,9 @@ const ManageUsers = () => {
     return res.json();
   });
 
+
   const handleAdmin = (id) => {
+    
     fetch(`http://localhost:5000/users/admin/${id}`, {
         method: 'PATCH',
 
@@ -27,6 +29,7 @@ const ManageUsers = () => {
   };
 
   const handleInstructor = (id) => {
+    
     fetch(`http://localhost:5000/users/instructor/${id}`, {
       method: 'PATCH',
     })
@@ -46,7 +49,7 @@ const ManageUsers = () => {
   };
   
 
-  const handleDelete = (user) => {};
+  
   return (
     <div className="w-full xl:px-32">
       <h3 className="font-bold text-2xl">Total Users: {users.length}</h3>
@@ -59,9 +62,7 @@ const ManageUsers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Change Role</th>
-
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -79,12 +80,14 @@ const ManageUsers = () => {
                       <button
                         onClick={() => handleAdmin(user._id)}
                         className="btn btn-error"
+
                       >
                         Make Admin
                       </button>
                       <button
                         onClick={() => handleInstructor(user._id)}
                         className="btn btn-error"
+
                       >
                         Make Instructor
                       </button>
@@ -101,14 +104,7 @@ const ManageUsers = () => {
                   )}
                 </td>
                 
-                <td>
-                  <button
-                    onClick={() => handleDelete(user)}
-                    className="btn btn-error"
-                  >
-                    Delete
-                  </button>
-                </td>
+                
               </tr>
             ))}
           </tbody>

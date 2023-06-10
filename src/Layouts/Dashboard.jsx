@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaUserShield } from "react-icons/fa";
+// import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   // todo
   const isAdmin = true;
+  // const [isAdmin] = useAdmin()
   return (
     <div className="">
       <div className="drawer lg:drawer-open ">

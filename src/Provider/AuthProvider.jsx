@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
 import { createContext, useEffect, useState } from "react";
+// import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -20,36 +21,63 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
   const signIn = (email, password) => {
-    setLoading(true)
-    return signInWithEmailAndPassword(auth, email, password)
-  }
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const googleLogin = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
   const logOut = () => {
-    setLoading(true)
-    return signOut(auth)
-  }
+    setLoading(true);
+    return signOut(auth);
+  };
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("current user", currentUser);
+      // axios
+      if (currentUser) {
+        // axios
+        //   .post("http://localhost:5000/jwt", { email: currentUser?.email })
+        //   .then((data) => {
+        //     // localstorage
+        //     localStorage.setItem("access-token", data.data.token);
+        //     console.log(data.data.token);
+        //     setLoading(false);
+        //   });
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({email: currentUser?.email})
+        })
+        .then(res => res.json())
+        .then(data => {
+          
+          localStorage.setItem("access-token", data?.token)
+          setLoading(false);
+        })
+      }
+      else{
+        localStorage.removeItem('access-token')
+    }
       setLoading(false);
     });
     return () => {
@@ -65,7 +93,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     logOut,
     updateUserProfile,
-  }
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

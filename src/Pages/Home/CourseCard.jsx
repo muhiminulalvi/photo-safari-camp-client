@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
+import axios from "axios";
 
 const CourseCard = ({ course }) => {
   const { user } = useContext(AuthContext);
@@ -37,16 +38,23 @@ const CourseCard = ({ course }) => {
         });
         return;
       }
-      fetch("http://localhost:5000/carts", {
-        method: 'POST',
+      axios.post('http://localhost:5000/carts', cartItem, {
         headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(cartItem)
+              // 'content-type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("access-token")}`
+            },
       })
-        .then((res) => res.json())
+      // fetch("http://localhost:5000/carts", {
+      //   method: 'POST',
+      //   headers: {
+      //     'content-type': 'application/json',
+      //     'Authorization': `Bearer ${localStorage.getItem("access-token")}`
+      //   },
+      //   body: JSON.stringify(cartItem)
+      // })
+      //   .then((res) => res.json())
         .then((data) => {
-          if (data.insertedId) {
+          if (data?.data.insertedId) {
             refetch()
             Swal.fire({
               position: "center",
