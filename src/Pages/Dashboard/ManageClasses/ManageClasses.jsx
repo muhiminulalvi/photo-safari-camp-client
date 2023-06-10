@@ -150,7 +150,7 @@ const ManageClasses = () => {
                   <button
                     onClick={() => handleFeedback(item)}
                     className="btn btn-error"
-                    disabled={item.status == "approved" }
+                    disabled={item.status == "approved" || item.status == "pending"}
                   >
                     Feedback
                   </button>
