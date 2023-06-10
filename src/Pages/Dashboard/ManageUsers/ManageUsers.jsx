@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Swal from 'sweetalert2'
 const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axios.get("http://localhost:5000/users", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      }
+    });
+    return res?.data;
   });
 
 
