@@ -71,6 +71,7 @@ const ManageClasses = () => {
         .then(res => res.json())
         .then(data => {
             if (data.modifiedCount > 0) {
+              refetch()
                 Swal.fire({
                   position: "center",
                   icon: "success",
@@ -86,6 +87,8 @@ const ManageClasses = () => {
       setSelectedClass(null);
       setSelectedFeedback("");
   };
+
+
 
   return (
     <div className="w-full">

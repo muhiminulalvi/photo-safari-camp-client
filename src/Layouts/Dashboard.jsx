@@ -41,7 +41,10 @@ const Dashboard = () => {
                 <li>
                   <NavLink to="addclass">Add A Class</NavLink>
                 </li>
-                {/* Add more instructor-specific links here */}
+                <li>
+                  <NavLink to="myclass">My Class</NavLink>
+                </li>
+               
               </>
             ) : (
               <>
