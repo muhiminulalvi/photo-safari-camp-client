@@ -78,7 +78,25 @@ const CheckoutForm = ({ price, cart }) => {
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
         if (res.data.insertResult.insertedId) {
-          // display confirm
+          // Remove items from the cart
+        //   axiosSecure.delete("/carts", {
+        //     data: { cartItems: cart.map((item) => item._id) },
+        //   })
+        //   .then((res) => {
+        //     console.log("Items removed from cart:", res.data);
+        //     // Update the enrolled classes
+        //     axiosSecure.post("/classes/enroll", { courseId: cart.map((item) => item.courseId) })
+        //       .then((res) => {
+        //         console.log("Classes updated:", res.data);
+        //         // Display confirm
+        //       })
+        //       .catch((error) => {
+        //         console.error("Failed to update classes:", error);
+        //       });
+        //   })
+        //   .catch((error) => {
+        //     console.error("Failed to remove items from cart:", error);
+        //   });
         }
       });
     }
