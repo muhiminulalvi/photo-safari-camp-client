@@ -1,24 +1,30 @@
 import { useEffect, useState } from "react";
 // import axios from "axios";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const PaymentHistory = () => {
   const [paymentData, setPaymentData] = useState([]);
   const [axiosSecure] = useAxiosSecure();
+  const {user} = useContext(AuthContext)
 
   useEffect(() => {
     axiosSecure.get("/payments")
       .then((res) => {
-        const sortedData = res.data.sort((a, b) =>
-          new Date(b.date) - new Date(a.date)
-        );
-        setPaymentData(sortedData);
-        // setPaymentData(res.data)
+        // const sortedData = res.data.sort((a, b) =>
+        //   new Date(b.date) - new Date(a.date)
+        // );
+        // setPaymentData(sortedData);
+        // // setPaymentData(res.data)
+        const userPaymentData = res.data.filter((item) => item.email === user?.email);
+      const sortedData = userPaymentData.sort((a, b) => new Date(b.date) - new Date(a.date));
+      setPaymentData(sortedData);
       })
       .catch((error) => {
         console.error("Failed to fetch paid items:", error);
       });
-  }, [axiosSecure]);
+  }, [axiosSecure, user]);
 
   return (
     <div className=" overflow-x-auto w-full xl:px-32 md:px-10 sm:px-2">

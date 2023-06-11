@@ -1,19 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const EnrolledClass = () => {
   const [paidItems, setPaidItems] = useState([]);
   const [axiosSecure] = useAxiosSecure();
+  const {user} = useContext(AuthContext)
+
 
   useEffect(() => {
     axiosSecure.get("/payments")
       .then((res) => {
-        setPaidItems(res.data);
+        // setPaidItems(res.data);
+        const userPaidItems = res.data.filter((item) => item.email === user?.email);
+        console.log(userPaidItems);
+
+      setPaidItems(userPaidItems);
       })
       .catch((error) => {
         console.error("Failed to fetch paid items:", error);
       });
-  }, [axiosSecure]);
+  }, [axiosSecure, user]);
 
 
   return (

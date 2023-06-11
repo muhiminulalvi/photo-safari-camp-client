@@ -2,29 +2,29 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaUserShield } from "react-icons/fa";
-import { HiShoppingCart } from "react-icons/hi";
+import { HiCubeTransparent, HiShoppingCart } from "react-icons/hi";
 import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
 
   useEffect(() => {
-    localStorage.setItem("theme", theme)
-    const localTheme = localStorage.getItem("theme")
-    document.querySelector("html").setAttribute("data-theme", localTheme)
-  },[theme])
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
   const handleToggle = (e) => {
-    if(e.target.checked){
-      setTheme("black")
+    if (e.target.checked) {
+      setTheme("black");
+    } else {
+      setTheme("light");
     }
-    else{
-      setTheme("light")
-    }
-  }
-
+  };
 
   const navOptions = (
     <>
@@ -94,8 +94,14 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <Link to="/" className="font-bold text-xl uppercase  tracking-wide">
-            Photo Safari Camp
+          <Link
+            to="/"
+            className="font-bold  uppercase tracking-wide flex items-center"
+          >
+            <HiCubeTransparent size={40}></HiCubeTransparent>{" "}
+            <p className="flex flex-col">
+              <span className="text-3xl">Photo</span> <span className="italic">Safari Camp</span>
+            </p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -104,7 +110,11 @@ const Navbar = () => {
         <div className="navbar-end gap-4">
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input type="checkbox" onChange={handleToggle} checked={theme === "light" ? false : true}/>
+            <input
+              type="checkbox"
+              onChange={handleToggle}
+              checked={theme === "light" ? false : true}
+            />
 
             {/* sun icon */}
             <svg
