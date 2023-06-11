@@ -4,9 +4,10 @@ import Footer from "../Components/Shared/Footer";
 
 
 const Main = () => {
+
     return (
         <>
-            <Navbar />
+            <Navbar  />
             <Outlet />
             <Footer />
         </>

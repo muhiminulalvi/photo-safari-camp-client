@@ -1,9 +1,12 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SectionTitle from '../../Components/Shared/SectionTitle';
 import InstructorCard from './InstructorCard';
+import { useEffect } from 'react';
+
 
 const PopularInstructor = () => {
+
     const [popularInstructor, setPopularInstructor] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/instructors')
