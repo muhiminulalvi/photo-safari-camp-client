@@ -40,7 +40,7 @@ const CourseCard = ({ course }) => {
         });
         return;
       }
-      axios.post('http://localhost:5000/carts', cartItem, {
+      axios.post('https://photo-safari-camp-server.vercel.app/carts', cartItem, {
         headers: {
               // 'content-type': 'application/json',
               'Authorization': `Bearer ${localStorage.getItem("access-token")}`
@@ -84,7 +84,7 @@ const [isInstructor] = useInstructor()
   return (
     <div className={`card w-full h-full ${availableSeats === 0 ? 'bg-error' : 'bg-yellow-50'} shadow-xl `}>
       <figure>
-        <img src={image} alt="Shoes" className="w-full h-64" />
+        <img src={image} alt="Image" className="w-full h-64" />
       </figure>
       <div className="card-body">
         <h2 className="card-title font-bold text-xl">{name}</h2>

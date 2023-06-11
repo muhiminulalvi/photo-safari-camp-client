@@ -53,7 +53,7 @@ const AddClass = () => {
             status: 'pending'
           };
           console.log(newCourse);
-          axios.post('http://localhost:5000/classes', newCourse, {
+          axios.post('https://photo-safari-camp-server.vercel.app/classes', newCourse, {
             headers: {
                 // 'content-type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("access-token")}`

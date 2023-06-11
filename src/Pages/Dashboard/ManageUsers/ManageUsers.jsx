@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await axios.get("http://localhost:5000/users", {
+    const res = await axios.get("https://photo-safari-camp-server.vercel.app/users", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access-token")}`,
       }
@@ -14,7 +14,7 @@ const ManageUsers = () => {
 
   const handleAdmin = (id) => {
     
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://photo-safari-camp-server.vercel.app/users/admin/${id}`, {
         method: 'PATCH',
 
     })
@@ -35,7 +35,7 @@ const ManageUsers = () => {
 
   const handleInstructor = (id) => {
     
-    fetch(`http://localhost:5000/users/instructor/${id}`, {
+    fetch(`https://photo-safari-camp-server.vercel.app/users/instructor/${id}`, {
       method: 'PATCH',
     })
       .then((res) => res.json())

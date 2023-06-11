@@ -16,7 +16,7 @@ const SocialLogin = () => {
         email: loggedUser.email,
         role: 'student'
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://photo-safari-camp-server.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

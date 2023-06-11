@@ -54,14 +54,14 @@ const AuthProvider = ({ children }) => {
       // axios
       if (currentUser) {
         // axios
-        //   .post("http://localhost:5000/jwt", { email: currentUser?.email })
+        //   .post("https://photo-safari-camp-server.vercel.app/jwt", { email: currentUser?.email })
         //   .then((data) => {
         //     // localstorage
         //     localStorage.setItem("access-token", data.data.token);
         //     console.log(data.data.token);
         //     setLoading(false);
         //   });
-        fetch('http://localhost:5000/jwt', {
+        fetch('https://photo-safari-camp-server.vercel.app/jwt', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

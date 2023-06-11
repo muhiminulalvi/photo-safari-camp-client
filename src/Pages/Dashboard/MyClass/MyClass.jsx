@@ -10,7 +10,7 @@ const MyClass = () => {
     queryKey: ["classes"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/classes?email=${user?.email}`,
+        `https://photo-safari-camp-server.vercel.app/classes?email=${user?.email}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access-token")}`,

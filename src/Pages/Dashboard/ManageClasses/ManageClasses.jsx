@@ -9,7 +9,7 @@ const ManageClasses = () => {
   const [selectedFeedback, setSelectedFeedback] = useState("");
 
   const handleApprove = async (item) => {
-    fetch(`http://localhost:5000/classes/approve/${item._id}`, {
+    fetch(`https://photo-safari-camp-server.vercel.app/classes/approve/${item._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -29,7 +29,7 @@ const ManageClasses = () => {
   };
 
   const handleDeny = (item) => {
-    fetch(`http://localhost:5000/classes/denied/${item._id}`, {
+    fetch(`https://photo-safari-camp-server.vercel.app/classes/denied/${item._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -57,7 +57,7 @@ const ManageClasses = () => {
   const handleSubmitFeedback = () => {
 
     fetch(
-          `http://localhost:5000/classes/feedback/${selectedClass._id}`,
+          `https://photo-safari-camp-server.vercel.app/classes/feedback/${selectedClass._id}`,
           {
             method: "POST",
             headers: {

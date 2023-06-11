@@ -7,7 +7,7 @@ import InstructorCard from "../Home/InstructorCard";
 const AllInstructor = () => {
     const [allInstructor, setAllInstructor] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/instructors')
+        fetch('https://photo-safari-camp-server.vercel.app/instructors')
         .then((res) => res.json())
       .then((data) => {
 

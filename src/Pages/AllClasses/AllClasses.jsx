@@ -11,7 +11,7 @@ const AllClasses = () => {
 
 
 //   useEffect(() => {
-//     fetch("http://localhost:5000/classes")
+//     fetch("https://photo-safari-camp-server.vercel.app/classes")
 //       .then((res) => res.json())
 //       .then((data) => {
 //         setClassData(data)
