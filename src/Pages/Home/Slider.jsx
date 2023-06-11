@@ -1,5 +1,8 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Slider1 from '../../assets/slider1.jpg';
+import Slider2 from '../../assets/slider2.jpg';
+import Slider3 from '../../assets/slider3.jpg';
 
 const Slider = () => {
   return (
@@ -14,9 +17,10 @@ const Slider = () => {
       >
         <div className="relative">
           <img
-            src="https://i.ibb.co/kKLggZc/pexels-andy-vu-3244513.jpg"
+            // src="https://i.ibb.co/kKLggZc/pexels-andy-vu-3244513.jpg"
+            src={Slider1}
             alt="Slider 1"
-            className="w-full h-[650px]"
+            className="w-full h-[720px]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="bg-black opacity-50 absolute inset-0"></div>
@@ -31,9 +35,10 @@ const Slider = () => {
         </div>
         <div className="relative">
           <img
-            src="https://i.ibb.co/K9fX4hy/pexels-kelly-2519390.jpg"
+            // src="https://i.ibb.co/K9fX4hy/pexels-kelly-2519390.jpg"
+            src={Slider2}
             alt="Slider 2"
-            className="w-full h-[650px]"
+            className="w-full h-[720px]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="bg-black opacity-50 absolute inset-0"></div>
@@ -48,9 +53,10 @@ const Slider = () => {
         </div>
         <div className="relative">
           <img
-            src="https://i.ibb.co/swZYjQf/pexels-francesco-ungaro-464327.jpg"
+            // src="https://i.ibb.co/swZYjQf/pexels-francesco-ungaro-464327.jpg"
+            src={Slider3}
             alt="Slider 3"
-            className="w-full h-[650px]"
+            className="w-full h-[720px]"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className="bg-black opacity-50 absolute inset-0"></div>

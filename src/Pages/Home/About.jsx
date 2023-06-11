@@ -1,3 +1,4 @@
+import AboutIMG from '../../assets/about.jpeg'
 const About = () => {
     return (
       <section className="bg-yellow-50 py-20">
@@ -18,7 +19,8 @@ const About = () => {
               </p>
             </div>
             <div className="">
-              <img src="https://img.freepik.com/free-photo/woman-man-looking-camera-photos_23-2148532473.jpg" alt="About Image" className="rounded-lg shadow-lg" />
+              {/* <img src="https://images.pexels.com/photos/935835/pexels-photo-935835.jpeg" alt="About Image" className="rounded-lg shadow-lg" /> */}
+              <img src={AboutIMG} alt="About Image" className="rounded-full shadow-lg" />
             </div>
           </div>
         </div>

@@ -13,12 +13,10 @@ const CourseCard = ({ course }) => {
   const {
     _id,
     name,
-    category,
     instructor,
     image,
     availableSeats,
     price,
-    studentsEnrolled,
   } = course || {};
 
   const handleAddToCart = (course) => {
@@ -76,18 +74,16 @@ const CourseCard = ({ course }) => {
   return (
     <div className="card w-full h-full bg-yellow-50 shadow-xl ">
       <figure>
-        <img src={image} alt="Shoes" className="w-full h-80" />
+        <img src={image} alt="Shoes" className="w-full h-64" />
       </figure>
       <div className="card-body">
         <h2 className="card-title font-bold text-xl">{name}</h2>
-        <p className="font-semibold">Category: {category}</p>
         <p className="font-semibold">Instructor: {instructor}</p>
-        <p className="font-semibold">Student Enrolled: {studentsEnrolled}</p>
         <p className="font-semibold">Available Seats: {availableSeats}</p>
         <p className="font-semibold">Price: ${price}</p>
         <div className="card-actions justify-start">
           <Link
-            className="btn btn-primary"
+            className="btn btn-primary font-bold"
             onClick={() => handleAddToCart(course)}
           >
             Enroll Now
