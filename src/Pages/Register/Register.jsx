@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -38,13 +39,26 @@ const Register = () => {
               .then((data) => {
                 if (data.insertedId) {
                   reset();
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'You are now a registered User',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
                   navigate(from, { replace: true });
                 }
               });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err)
+            alert('Please Provide Correct Information')
+          });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        alert('Give Correct Information')
+      });
   };
 
   return (
@@ -104,6 +118,11 @@ const Register = () => {
                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
                 })}
               />
+              <label className="">
+                <p className="label-text">* Password must be 6 characters long.</p>
+                <p className="label-text">* Maximum Length of the password should be 20 characters.</p>
+                <p className="label-text">* Password should contain an uppercase and a special character.</p>
+              </label>
               {errors.password?.type === "required" && (
                 <span className="font-bold text-error">
                   Password is required.

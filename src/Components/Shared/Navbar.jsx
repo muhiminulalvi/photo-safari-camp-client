@@ -4,6 +4,8 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { FaUserShield } from "react-icons/fa";
 import { HiCubeTransparent, HiShoppingCart } from "react-icons/hi";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -26,6 +28,9 @@ const Navbar = () => {
     }
   };
 
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+
   const navOptions = (
     <>
       <li>
@@ -43,12 +48,25 @@ const Navbar = () => {
           Classes
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/dashboard" className="font-bold text-[20px] ">
           Dashboard
         </Link>
-      </li>
-      {user && (
+      </li> */}
+      {isAdmin ? (
+        <li>
+          <Link to="/dashboard/adminhome" className="font-bold text-[20px] ">Dashboard</Link>
+        </li>
+      ) : isInstructor ? (
+        <li>
+          <Link to="/dashboard/instructorhome" className="font-bold text-[20px] ">Dashboard</Link>
+        </li>
+      ) : (
+        <li>
+          <Link to="/dashboard/userhome" className="font-bold text-[20px] ">Dashboard</Link>
+        </li>
+      )}
+      {user && !isAdmin && !isInstructor && (
         <li>
           <Link to="dashboard/mycart">
             <HiShoppingCart size={20} color="#000000"></HiShoppingCart>
@@ -100,7 +118,8 @@ const Navbar = () => {
           >
             <HiCubeTransparent size={40}></HiCubeTransparent>{" "}
             <p className="flex flex-col">
-              <span className="text-3xl">Photo</span> <span className="italic">Safari Camp</span>
+              <span className="text-3xl">Photo</span>{" "}
+              <span className="italic">Safari Camp</span>
             </p>
           </Link>
         </div>

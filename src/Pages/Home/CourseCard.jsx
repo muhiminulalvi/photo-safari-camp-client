@@ -1,9 +1,11 @@
 import { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
 import axios from "axios";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const CourseCard = ({ course }) => {
   const { user } = useContext(AuthContext);
@@ -20,6 +22,8 @@ const CourseCard = ({ course }) => {
   } = course || {};
 
   const handleAddToCart = (course) => {
+
+    
     console.log(course);
     if (user && user.email) {
       const cartItem = {courseId: _id, name,image, price, email: user.email}
@@ -71,8 +75,14 @@ const CourseCard = ({ course }) => {
       })
     }
   };
+
+  const isSeatsAvailable = availableSeats > 0;
+const [isAdmin] = useAdmin()
+const [isInstructor] = useInstructor()
+  const isAdminOrInstructor = user && ( isAdmin || isInstructor);
+  const isButtonDisabled = !isSeatsAvailable || isAdminOrInstructor;
   return (
-    <div className="card w-full h-full bg-yellow-50 shadow-xl ">
+    <div className={`card w-full h-full ${availableSeats === 0 ? 'bg-error' : 'bg-yellow-50'} shadow-xl `}>
       <figure>
         <img src={image} alt="Shoes" className="w-full h-64" />
       </figure>
@@ -82,12 +92,14 @@ const CourseCard = ({ course }) => {
         <p className="font-semibold">Available Seats: {availableSeats}</p>
         <p className="font-semibold">Price: ${price}</p>
         <div className="card-actions justify-start">
-          <Link
-            className="btn btn-primary font-bold"
+
+          <button
+            className={`btn btn-primary font-bold ${isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
             onClick={() => handleAddToCart(course)}
+            disabled={isButtonDisabled}
           >
             Enroll Now
-          </Link>
+          </button>
         </div>
       </div>
     </div>

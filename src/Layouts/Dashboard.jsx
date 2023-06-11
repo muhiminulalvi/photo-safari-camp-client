@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { FaUserShield } from "react-icons/fa";
+import { FaChalkboard, FaChalkboardTeacher, FaHome, FaHourglassHalf, FaHouseUser, FaReceipt, FaSchool, FaUserGraduate, FaUserSecret, FaUserShield, FaUserTie, FaUsers, FaWind } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 
@@ -30,19 +30,25 @@ const Dashboard = () => {
             {isAdmin ? (
               <>
                 <li>
-                  <NavLink to="manageclasses">Manage Classes</NavLink>
+                  <NavLink to="adminhome"> <FaUserSecret></FaUserSecret> Admin Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="manageusers">Manage Users</NavLink>
+                  <NavLink to="manageclasses"> <FaSchool></FaSchool> Manage Classes</NavLink>
+                </li>
+                <li>
+                  <NavLink to="manageusers"> <FaUsers></FaUsers> Manage Users</NavLink>
                 </li>
               </>
             ) : isInstructor ? (
               <>
                 <li>
-                  <NavLink to="addclass">Add A Class</NavLink>
+                  <NavLink to="instructorhome"> <FaChalkboardTeacher></FaChalkboardTeacher> Instructor Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="myclass">My Class</NavLink>
+                  <NavLink to="addclass"> <FaChalkboard></FaChalkboard> Add A Class</NavLink>
+                </li>
+                <li>
+                  <NavLink to="myclass"> <FaWind></FaWind> My Class</NavLink>
                 </li>
                
               </>
@@ -64,25 +70,28 @@ const Dashboard = () => {
                 </div>
                 <hr />
                 <li>
-                  <NavLink to="mycart">My Selected Class</NavLink>
+                  <NavLink to="userhome"> <FaHouseUser></FaHouseUser> User Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="enrolledclasses">My Enrolled Class</NavLink>
+                  <NavLink to="mycart"> <FaSchool></FaSchool> My Selected Class</NavLink>
                 </li>
                 <li>
-                  <NavLink to="paymenthistory">Payment History</NavLink>
+                  <NavLink to="enrolledclasses"> <FaUserGraduate></FaUserGraduate> My Enrolled Class</NavLink>
+                </li>
+                <li>
+                  <NavLink to="paymenthistory"> <FaReceipt></FaReceipt> Payment History</NavLink>
                 </li>
               </>
             )}
             <hr />
             <li>
-              <NavLink to="/">Home Page</NavLink>
+              <NavLink to="/"> <FaHome></FaHome> Home Page</NavLink>
             </li>
             <li>
-              <NavLink to="/classes">All Classes</NavLink>
+              <NavLink to="/classes"> <FaHourglassHalf></FaHourglassHalf> All Classes</NavLink>
             </li>
             <li>
-              <NavLink to="/instructors">Instructors</NavLink>
+              <NavLink to="/instructors"> <FaUserTie></FaUserTie> Instructors</NavLink>
             </li>
           </ul>
         </div>
