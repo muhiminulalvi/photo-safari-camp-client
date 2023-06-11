@@ -7,7 +7,6 @@ const EnrolledClass = () => {
   const [axiosSecure] = useAxiosSecure();
   const {user} = useContext(AuthContext)
 
-
   useEffect(() => {
     axiosSecure.get("/payments")
       .then((res) => {
