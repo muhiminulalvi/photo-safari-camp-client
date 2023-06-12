@@ -17,7 +17,7 @@ const useCart = () => {
             Authorization: `Bearer ${localStorage.getItem("access-token")}`,
           }
         });
-        console.log(res?.data);
+        // console.log(res?.data);
         return res?.data
     },
   });

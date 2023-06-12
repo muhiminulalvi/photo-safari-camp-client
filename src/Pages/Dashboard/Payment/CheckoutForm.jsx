@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
-const CheckoutForm = ({ price, cart }) => {
+const CheckoutForm = ({ price, item }) => {
   const { user } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
@@ -69,23 +69,24 @@ const CheckoutForm = ({ price, cart }) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        quantity: cart.length,
-        cartItems: cart.map((item) => item._id),
-        courseId: cart.map((item) => item.courseId),
+        quantity: item.length,
+        cartItems: item._id,
+        itemItems: item._id,
+        courseId: item.courseId,
         // status: 'service pending',
-        itemNames: cart.map((item) => item.name),
+        itemNames: item.name,
       };
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
         if (res.data.insertResult.insertedId) {
-          // Remove items from the cart
-        //   axiosSecure.delete("/carts", {
-        //     data: { cartItems: cart.map((item) => item._id) },
+          // Remove items from the item
+        //   axiosSecure.delete("/items", {
+        //     data: { itemItems: item.map((item) => item._id) },
         //   })
         //   .then((res) => {
-        //     console.log("Items removed from cart:", res.data);
+        //     console.log("Items removed from item:", res.data);
         //     // Update the enrolled classes
-        //     axiosSecure.post("/classes/enroll", { courseId: cart.map((item) => item.courseId) })
+        //     axiosSecure.post("/classes/enroll", { courseId: item.map((item) => item.courseId) })
         //       .then((res) => {
         //         console.log("Classes updated:", res.data);
         //         // Display confirm
@@ -95,7 +96,7 @@ const CheckoutForm = ({ price, cart }) => {
         //       });
         //   })
         //   .catch((error) => {
-        //     console.error("Failed to remove items from cart:", error);
+        //     console.error("Failed to remove items from item:", error);
         //   });
         }
       });

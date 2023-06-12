@@ -13,7 +13,7 @@ const useInstructor = () => {
                     Authorization: `Bearer ${localStorage.getItem("access-token")}`,
                   }
             });
-            console.log('Instructor = ', res)
+            // console.log('Instructor = ', res)
             return res.data.instructor;
         }
     })
